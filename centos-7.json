@@ -10,9 +10,11 @@
           "visibility": "public"
         }
       },
-      "availability_zone": "melbourne-qh2",
+      "availability_zone": "auckland",
       "ssh_username": "ec2-user",
-      "security_groups": ["image-build"]
+      "security_groups": [
+        "image-build"
+      ]
     }
   ],
   "provisioners": [
@@ -27,4 +29,3 @@
     }
   ]
 }
-

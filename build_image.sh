@@ -42,10 +42,10 @@ set -eu
 # Packer is dumb! See notes on OpenStack Authorization at:
 #   https://www.packer.io/docs/builders/openstack.html
 export OS_TENANT_NAME=$OS_PROJECT_NAME
-export OS_DOMAIN_NAME=$OS_PROJECT_DOMAIN_NAME
+export OS_DOMAIN_NAME=${OS_PROJECT_DOMAIN_NAME:-"Default"}
 
 # Set the AZ
-AZ=melbourne-qh2
+AZ=auckland
 if echo $OS_AUTH_URL | grep -q test; then
     AZ=coreservices
 fi

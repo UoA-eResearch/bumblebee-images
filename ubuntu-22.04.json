@@ -10,9 +10,11 @@
         }
       },
       "flavor": "m3.medium",
-      "availability_zone": "melbourne-qh2",
+      "availability_zone": "auckland",
       "ssh_username": "ubuntu",
-      "security_groups": ["image-build"]
+      "security_groups": [
+        "image-build"
+      ]
     }
   ],
   "provisioners": [
@@ -32,4 +34,3 @@
     }
   ]
 }
-

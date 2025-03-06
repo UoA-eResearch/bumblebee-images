@@ -24,12 +24,23 @@ especially useful for testing.
 ## Requirements
 
 You'll require the following tools installed and in your path
- * Packer
- * Ansible
- * Vagrant (for testing)
- * OpenStack CLI
- * jq (JSON CLI tool)
- * QEMU tools (for image shrinking process)
+* Packer
+* Ansible
+* Vagrant (for testing)
+* OpenStack CLI
+* jq (JSON CLI tool)
+* QEMU tools (for image shrinking process)
+
+OpenStack and Ansible integrations for Packer need to be installed too. This can be done with:
+
+```
+packer plugins install github.com/hashicorp/openstack
+packer plugins install github.com/hashicorp/ansible
+```
+
+Ensure there is a security group named "image-build" in the Nectar project
+that is associated with the OpenStack RC file. The security group should have
+a rule allowing SSH traffic, so the playbook can communicate with it. 
 
 (This is pretty much the same set of requirements as for the nectar-images
 repo, so check there ... and the ImageBuilding Wiki page ... for updates,

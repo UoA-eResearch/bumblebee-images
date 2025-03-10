@@ -118,6 +118,22 @@ Vagrant.configure("2") do |config|
     end
   end
 
+    # Generic Ubuntu 22.04 (jammy)
+    config.vm.define "transcribemydata" do |c|
+      c.vm.box = "generic/ubuntu2204"
+      c.vm.provider "virtualbox" do |v, override|
+        override.vm.box = "ubuntu/jammy64"
+      end
+      c.vm.provision "ansible" do |ansible|
+        ansible.compatibility_mode = "2.0"
+        ansible.extra_vars = { nectar_test_build: true,
+                               ansible_python_interpreter: "/usr/bin/python3" }
+        ansible.playbook = "ansible/playbook-transcribemydata.yml"
+        ansible.become = true
+      end
+    end
+  
+
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.network :forwarded_port, guest: 3389, host: 3389, host_ip: '0.0.0.0'
   config.vm.network :forwarded_port, guest: 8080, host: 8080, host_ip: '0.0.0.0'
@@ -132,5 +148,7 @@ Vagrant.configure("2") do |config|
     v.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
     v.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
   end
+
+  
 
 end

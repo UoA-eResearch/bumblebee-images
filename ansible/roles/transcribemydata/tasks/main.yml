@@ -1,0 +1,11 @@
+---
+- name: Include variables from role vars file.
+  include_vars: 
+    file: default.yml
+- name: Download vibe package
+  get_url:
+    url: "https://github.com/thewh1teagle/vibe/releases/download/v{{ vibe_version }}/vibe_{{ vibe_version }}_amd64_ubuntu-22.04.deb"
+    dest: "/tmp/vibe_{{ vibe_version }}_amd64_ubuntu-22.04.deb"
+- name: Install vibe
+  ansible.builtin.apt:
+    deb: /tmp/vibe_{{ vibe_version }}_amd64_ubuntu-22.04.deb

@@ -9,3 +9,21 @@
 - name: Install vibe
   ansible.builtin.apt:
     deb: /tmp/vibe_{{ vibe_version }}_amd64_ubuntu-22.04.deb
+- name: Ensure vibe local folder created
+  file:
+      path: /home/ubuntu/.local/share/github.com.thewh1teagle.vibe/
+      state: directory
+- name: Predownload large model
+  get_url:
+    url: "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-large-v3-turbo.bin?download=true"
+    dest: /home/ubuntu/.local/share/github.com.thewh1teagle.vibe/
+- name: Install flatpak
+  package:
+    name: flatpak
+    state: present
+- name: Add flathub repo
+  command:
+    cmd: "flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo"
+- name: Install buzz
+  command:
+    cmd: flatpak install flathub io.github.chidiwilliams.Buzz

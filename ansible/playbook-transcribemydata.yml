@@ -13,6 +13,7 @@
     - setup
     - xfce4-desktop
     - common
+    - xrdp
     - guacamole
     - openstack-clients
     - transcribemydata
